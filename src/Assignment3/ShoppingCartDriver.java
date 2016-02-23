@@ -228,6 +228,7 @@ public class ShoppingCartDriver{
 				index++;
 				letter = input.charAt(index);
 			}
+			start = index;
 			while ((!Character.isSpaceChar(letter))&& index!=doclength-1){		
 				index++;
 				letter = input.charAt(index);										//takes the letter at the pointer
