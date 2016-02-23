@@ -60,11 +60,11 @@ public class ShoppingCartDriver{
 			//Parse input, take appropriate actions.
 			String original = new String(inputString);
 			String operation = nextword(original);
-			if (operation.equals("insert")||operation.equals("Insert")){/*insert stuff*/}
-			if (operation.equals("search")||operation.equals("Search")){/*search stuff*/}
-			if (operation.equals("delete")||operation.equals("Delete")){/*delete stuff*/}
-			if (operation.equals("update")||operation.equals("Update")){/*update stuff*/}
-			if (operation.equals("print")||operation.equals("Print")){/*print stuff*/}
+			if (operation.equals("insert")||operation.equals("Insert")){System.out.println("Inserting stuff");}
+			if (operation.equals("search")||operation.equals("Search")){System.out.println("Searching stuff");}
+			if (operation.equals("delete")||operation.equals("Delete")){System.out.println("Deleting stuff");}
+			if (operation.equals("update")||operation.equals("Update")){System.out.println("Updating stuff");}
+			if (operation.equals("print")||operation.equals("Print")){System.out.println("Printing stuff");}
 			else {return "Invalid Operation";}
 			//Stub for arraylist.
 			ArrayList<Item> shoppingCart = new ArrayList<Item>(); 
