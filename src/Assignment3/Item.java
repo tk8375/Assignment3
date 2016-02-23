@@ -34,8 +34,8 @@ public class Item {
 	float calculatePrice() { 
 		float final_price =(float) (price * quantity); // Insert price calculation here return final_price;
 		float shipping_price = shippingPrice();
-		final_price += shipping_price;
 		final_price = final_price + final_price / (float)tax;
+		final_price += shipping_price;
 		final_price = (float)Conversion.Rounding(final_price, 2);
 		return final_price;
 	}
