@@ -59,6 +59,7 @@ public class ShoppingCartDriver{
 		* Returns: None					                                              *
 		******************************************************************************/
 		public String processCart(String inputString){
+			if(inputString.length()<=0){return "Error: No Input data";}
 			index = 0;
 			start = 0;
 			inputString += " ";
@@ -189,7 +190,7 @@ public class ShoppingCartDriver{
 		//----------------------------------------------------
 		//----------------------------------------------------
 		private void printCart(){
-			
+			if(shoppingCart.size()<=0){return;}
 			//must sort the array before printing
 			/*write the sort code/method*/
 			//arrayAlphabeticalSort();
@@ -231,12 +232,13 @@ public class ShoppingCartDriver{
 			//System.out.println(extracted);
 			return extracted;
 		}
-//		private void arrayAlphabeticalSort() {
-//			ArrayList<Item> tempList = new ArrayList<Item>();
-//			smallest
-//			for(int index = 0; index < shoppingCart.size(); index ++){
-//				shoppingCart.get(index).getName().
-//			}
-//			
-//		}
+		private void arrayAlphabeticalSort() {
+			ArrayList<Item> tempList = new ArrayList<Item>();
+			int index = 0;
+			String smallest = shoppingCart.get(index).getName();
+			for(; index < shoppingCart.size(); index ++){
+				//shoppingCart.get(index).getName().
+			}
+			
+		}
 }
