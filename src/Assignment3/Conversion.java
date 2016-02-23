@@ -45,6 +45,7 @@ public class Conversion {
 		}
 		return -1;
 	}
+	//convert string into int value and returns -1 if string is not a number or if overflow occurs.
 	public static int StringToInt (String inputString){
 		int index = 0;
 		char letter = inputString.charAt(index);

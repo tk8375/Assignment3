@@ -183,7 +183,7 @@ public class ShoppingCartDriver{
 			int quantity = Conversion.StringToInt(nextword(inputString));
 			if(quantity == -1){return "Invalid amount to be updated";}
 			for(int index = 0; index < shoppingCart.size(); index++){
-				if(shoppingCart.get(index).getName().equalsIgnoreCase(name)){
+				if(shoppingCart.get(index).getName().equals(name)){
 					shoppingCart.get(index).quantity = quantity;
 					return name+" updated by " + quantity;
 				}
