@@ -20,6 +20,58 @@ public class Electronics extends Item {
 		//override calculatePrice() if necessary; Implement print methods as necessary
 		// Only re-implement stuff you cannot get from the superclass (Item)
 	}
+	public static boolean RealState (String state){
+		if( state.equalsIgnoreCase("AL")||
+			state.equalsIgnoreCase("AK")||
+			state.equalsIgnoreCase("AZ")||
+			state.equalsIgnoreCase("AR")||
+			state.equalsIgnoreCase("CA")||
+			state.equalsIgnoreCase("CO")||
+			state.equalsIgnoreCase("CT")||
+			state.equalsIgnoreCase("DE")||
+			state.equalsIgnoreCase("FL")||
+			state.equalsIgnoreCase("GA")||
+			state.equalsIgnoreCase("HI")||
+			state.equalsIgnoreCase("ID")||
+			state.equalsIgnoreCase("IL")||
+			state.equalsIgnoreCase("IN")||
+			state.equalsIgnoreCase("IA")||
+			state.equalsIgnoreCase("KS")||
+			state.equalsIgnoreCase("KY")||
+			state.equalsIgnoreCase("LA")||
+			state.equalsIgnoreCase("ME")||
+			state.equalsIgnoreCase("MD")||
+			state.equalsIgnoreCase("MA")||
+			state.equalsIgnoreCase("MI")||
+			state.equalsIgnoreCase("MN")||
+			state.equalsIgnoreCase("MS")||
+			state.equalsIgnoreCase("MO")||
+			state.equalsIgnoreCase("MT")||
+			state.equalsIgnoreCase("NE")||
+			state.equalsIgnoreCase("NV")||
+			state.equalsIgnoreCase("NH")||
+			state.equalsIgnoreCase("NJ")||
+			state.equalsIgnoreCase("NM")||
+			state.equalsIgnoreCase("NY")||
+			state.equalsIgnoreCase("NC")||
+			state.equalsIgnoreCase("ND")||
+			state.equalsIgnoreCase("OH")||
+			state.equalsIgnoreCase("OK")||
+			state.equalsIgnoreCase("OR")||
+			state.equalsIgnoreCase("PA")||
+			state.equalsIgnoreCase("SC")||
+			state.equalsIgnoreCase("SD")||
+			state.equalsIgnoreCase("TN")||
+			state.equalsIgnoreCase("TX")||
+			state.equalsIgnoreCase("UT")||
+			state.equalsIgnoreCase("VT")||
+			state.equalsIgnoreCase("VA")||
+			state.equalsIgnoreCase("WA")||
+			state.equalsIgnoreCase("WV")||
+			state.equalsIgnoreCase("WI")||
+			state.equalsIgnoreCase("WY")){ return true;}
+		return false;
+	}
 	
 //Implement calculate price/print methods as necessary
 	float calculatePrice() { 

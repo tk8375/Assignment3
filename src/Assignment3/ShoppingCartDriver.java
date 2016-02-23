@@ -117,19 +117,22 @@ public class ShoppingCartDriver{
 			}
 			else if (category.equalsIgnoreCase("ELECTRONICS")||category.equalsIgnoreCase("ELECTRONIC")){
 				boolean isFragile;
-				if(nextword(inputString).equalsIgnoreCase("F")){isFragile = true;}
-				else if(nextword(inputString).equalsIgnoreCase("NF")){isFragile = false;}
+				String fragile = nextword(inputString);
+				if(fragile.equalsIgnoreCase("F")){isFragile = true;}
+				else if(fragile.equalsIgnoreCase("NF")){isFragile = false;}
 				else{return "Please define if the electronic is fragile or not by inputting 'F' or 'NF'";}
 				String state = nextword(inputString);
 				if(state==null||state.length()>2){return "Please Specify the name of the State using its abbreviation.";}
+				if(!Electronics.RealState(state)){return "The input state is not part of the U.S.";}
 				Electronics newElectronic = new Electronics(category,name,price,quantity,weight,isFragile,state);
 				shoppingCart.add(newElectronic);
 				
 			}
 			else if (category.equalsIgnoreCase("GROCERY")||category.equalsIgnoreCase("GROCERIES")){
 				boolean isPerishable;
-				if(nextword(inputString).equalsIgnoreCase("P")){isPerishable = true;}
-				else if(nextword(inputString).equalsIgnoreCase("NP")){isPerishable = false;}
+				String perishable = nextword(inputString);
+				if(perishable.equalsIgnoreCase("P")){isPerishable = true;}
+				else if(perishable.equalsIgnoreCase("NP")){isPerishable = false;}
 				else{return "Please define if the grocery item is perishable or not by inputting 'P' or 'NP'";}
 				Grocery newGrocery = new Grocery(category,name,price,quantity,weight,isPerishable);
 				shoppingCart.add(newGrocery);
@@ -148,8 +151,8 @@ public class ShoppingCartDriver{
 			Iterator<Item> i = shoppingCart.iterator();
 			while (i.hasNext()) {
 				Item temp = i.next();
-				if(temp.getName().equalsIgnoreCase(name)){exact_match +=1;}
-				else if(temp.getName().contains(name)){contain_match +=1;}
+				if(temp.getName().equals(name)){exact_match +=1;}
+				else if(temp.getName().contains(name)||temp.getName().equalsIgnoreCase(name)){contain_match +=1;}
 			}
 			if(exact_match+contain_match == 0){return "No items found";}
 			String mssg = "Found " + exact_match + " exact matches and " + contain_match + " items that contains the keyword.";
