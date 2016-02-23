@@ -12,7 +12,7 @@ public class Item {
     /*******************************************************
     *  Create a new item with the given attributes.		 *
     ******************************************************/
-    public Item (String itemName, String type, double itemPrice, double pounds, int numPurchased)
+    public Item (String type, String itemName, double itemPrice,  int numPurchased, double pounds)
     {
       name = itemName;
       category = type;
@@ -25,7 +25,12 @@ public class Item {
     public int getQuantity(){
     	return quantity;
     }
-    
+    public String getName(){
+    	return name;
+    }
+    public String getType(){
+    	return category;
+    }
 	float calculatePrice() { 
 		float final_price = 0;
 		return final_price;

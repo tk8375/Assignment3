@@ -5,8 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
  
-public class ShoppingCartDriver
-{
+public class ShoppingCartDriver{
+	int index=0;
+	int start=0;
   public static void main(String[] args)   { // TODO Auto-generated method stub
 	  //Open file; file name specified in args (command line) 
 		if (args.length != 1) 
@@ -33,8 +34,8 @@ public class ShoppingCartDriver
 				
 				for (String s = reader.readLine(); s != null; s = reader.readLine()) 
 				{
-					String pigLatin = translator.processCart(s);
-					System.out.println(pigLatin);
+					String cart = translator.processCart(s);
+					System.out.println(cart);
 				}
 			} 
 			catch (FileNotFoundException e) 
@@ -51,15 +52,14 @@ public class ShoppingCartDriver
 		}
 		/******************************************************************************
 		* Method Name: processCart                                                    *
-		* Purpose: Uses String inputString to determine operation and continue 	  *
+		* Purpose: Uses String inputString to determine operation and continue 	  	  *
 		* the process accordingly						                              *
 		* Returns: None					                                              *
 		******************************************************************************/
 		public String processCart(String inputString){
 			//Parse input, take appropriate actions.
 			String original = new String(inputString);
-			String words[] = original.split(" ", 2);	//separates first word from rest of the string
-			String operation = words[0];
+			String operation = nextword(original);
 			if (operation.equals("insert")||operation.equals("Insert")){/*insert stuff*/}
 			if (operation.equals("search")||operation.equals("Search")){/*search stuff*/}
 			if (operation.equals("delete")||operation.equals("Delete")){/*delete stuff*/}
@@ -78,5 +78,19 @@ public class ShoppingCartDriver
 				// of Grocery, it will invoke the calculatePrice () method defined in Grocery.
 	  }
 			return ("bleh");
+	}
+	public String nextword(String input){								
+		char letter = input.charAt(index);
+		int doclength = input.length();
+		if (doclength==0){return null;}
+		while ((Character.isLetter(letter)==true)&& index!=doclength-1){		
+			index++;
+			letter = input.charAt(index);										//takes the letter at the pointer
+			}
+			if (index==doclength-1 && Character.isLetter(letter)==true){index++;}	//checks for end of statement
+			if (index-start==0){return null;}
+			String extracted = input.substring(start,index);
+			start = index;
+			return extracted;
 	}
 }
