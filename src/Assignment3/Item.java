@@ -8,7 +8,7 @@ public class Item {
     protected double price;
     protected int quantity;
     protected double weight;
-
+    protected double tax = 10;	//tax is in percents (ex. 10.5% tax -> tax = 10.5)
     /*******************************************************
     *  Create a new item with the given attributes.		 *
     ******************************************************/
@@ -32,15 +32,44 @@ public class Item {
     	return category;
     }
 	float calculatePrice() { 
-		float final_price = 0;
+		float final_price =(float) (price * quantity); // Insert price calculation here return final_price;
+		float shipping_price = shippingPrice();
+		final_price += shipping_price;
+		final_price = final_price + final_price / (float)tax;
+		final_price = (float)Rounding(final_price, 2);
 		return final_price;
+	}
+	protected float shippingPrice(){
+		float shippingPrice = (float) ((20*(weight))*quantity);
+		return shippingPrice;
+	}
+	protected float shippingPrice(boolean premium, double charge){
+		float shippingPrice = (float) ((20*(weight))*quantity);
+		if(premium){shippingPrice = (float) (shippingPrice + shippingPrice/charge);}
+		return shippingPrice;
+	}
+	
+	// rounds the value to nearest decimal place
+	protected double Rounding(double value, int decimalPlace){ 		int digit = 10; 
+		for(int i = 0; i< decimalPlace; i++){
+			digit *= 10;
+		}
+		double money = ((int)(value * digit));
+		digit /=10;
+		double roundingValue = money/10;
+		money = ((int)(money/10))/digit;
+		int rounding = (int)money/10;
+		roundingValue =(10*(roundingValue - rounding))-5;
+		double round = 1/digit; 
+		if(roundingValue>=0){money+=round;}
+		return money;
 	}
 	void printItemAttributes () {
 		//Print all applicable attributes of this class
-		System.out.println(name);
-		System.out.println(category);
-		System.out.println(price);
-		System.out.println(quantity);
-		System.out.println(weight);
+		System.out.println("Name: " + name);
+		System.out.println("Category: " + category);
+		System.out.println("Price: " + price);
+		System.out.println("Quantity: " + quantity);
+		System.out.println("weight: " + weight);
 	}
 }

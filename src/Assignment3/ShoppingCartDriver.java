@@ -9,7 +9,7 @@ public class ShoppingCartDriver{
 	int index=0;
 	int start=0;
   public static void main(String[] args)   { // TODO Auto-generated method stub
-	  //Open file; file name specified in args (command line) 
+	  //Open file; file name specifie00d in args (command line) 
 		if (args.length != 1) 
 		{
 			System.err.println ("Error: Incorrect number of command line arguments");
@@ -57,40 +57,62 @@ public class ShoppingCartDriver{
 		* Returns: None					                                              *
 		******************************************************************************/
 		public String processCart(String inputString){
-			//Parse input, take appropriate actions.
-			String original = new String(inputString);
-			String operation = nextword(original);
-			if (operation.equals("insert")||operation.equals("Insert")){System.out.println("Inserting stuff");}
-			if (operation.equals("search")||operation.equals("Search")){System.out.println("Searching stuff");}
-			if (operation.equals("delete")||operation.equals("Delete")){System.out.println("Deleting stuff");}
-			if (operation.equals("update")||operation.equals("Update")){System.out.println("Updating stuff");}
-			if (operation.equals("print")||operation.equals("Print")){System.out.println("Printing stuff");}
-			else {return "Invalid Operation";}
 			//Stub for arraylist.
 			ArrayList<Item> shoppingCart = new ArrayList<Item>(); 
 			// General code example for how to iterate an array list. 
 			//You will have to modify this heavily, to suit your needs.
+			
+			//Parse input, take appropriate actions.
+			String original = new String(inputString);
+			String operation = nextword(original);
+			if (operation.equals("insert")||operation.equals("Insert")){
+				System.out.println("Inserting stuff");
+				}
+			if (operation.equals("search")||operation.equals("Search")){
+				System.out.println("Searching stuff");
+				}
+			if (operation.equals("delete")||operation.equals("Delete")){
+				System.out.println("Deleting stuff");
+				}
+			if (operation.equals("update")||operation.equals("Update")){
+				System.out.println("Updating stuff");
+				}
+			if (operation.equals("print")||operation.equals("Print")){
+				System.out.println("Printing stuff");
+				printCart(shoppingCart);
+				}
+			else {return "Invalid Operation";}
+			return ("bleh");
+		}
+		public void printCart(ArrayList<Item> shoppingCart){
 			Iterator<Item> i = shoppingCart.iterator(); 
+			float total_price = 0;
 			while (i.hasNext()) {
-				Item temp = i.next(); temp.calculatePrice(); temp.printItemAttributes(); 
+				Item temp = i.next(); 
+				float cost = temp.calculatePrice(); 
+				temp.printItemAttributes(); 
 				//This (above) works because of polymorphism: a determination is made at runtime,
 				//based on the inherited class type, as to which method is to be invoked. Eg: If it is an instance
 				// of Grocery, it will invoke the calculatePrice () method defined in Grocery.
-	  }
-			return ("bleh");
-	}
-	public String nextword(String input){								
-		char letter = input.charAt(index);
-		int doclength = input.length();
-		if (doclength==0){return null;}
-		while ((Character.isLetter(letter)==true)&& index!=doclength-1){		
-			index++;
-			letter = input.charAt(index);										//takes the letter at the pointer
+				System.out.println(cost);
+				total_price += cost;
+				
 			}
-			if (index==doclength-1 && Character.isLetter(letter)==true){index++;}	//checks for end of statement
-			if (index-start==0){return null;}
-			String extracted = input.substring(start,index);
-			start = index;
-			return extracted;
-	}
+			System.out.println("Total price of your shopping cart is: " + total_price);
+			return;
+		}
+		public String nextword(String input){								
+			char letter = input.charAt(index);
+			int doclength = input.length();
+			if (doclength==0){return null;}
+			while ((Character.isLetter(letter)==true)&& index!=doclength-1){		
+				index++;
+				letter = input.charAt(index);										//takes the letter at the pointer
+				}
+				if (index==doclength-1 && Character.isLetter(letter)==true){index++;}	//checks for end of statement
+				if (index-start==0){return null;}
+				String extracted = input.substring(start,index);
+				start = index;
+				return extracted;
+		}
 }
