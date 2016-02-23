@@ -104,7 +104,7 @@ public class ShoppingCartDriver{
 			if(price == -1){return "Invalid price";}
 			//System.out.println(price);
 			int quantity = Conversion.StringToInt(nextword(inputString));
-			if(quantity == -1){return "Invalid quantity";}
+			if(quantity == -1){return "Invalid quantity, please input only integer numbers not followed by a decimal.";}
 			//System.out.println(quantity);
 			double weight = Conversion.StringToDouble(nextword(inputString), -1);
 			//System.out.println(weight);
@@ -188,7 +188,7 @@ public class ShoppingCartDriver{
 					return name+" updated by " + quantity;
 				}
 			}
-			return "The item " + name+ "does not exist in the shopping cart";
+			return "The item " + name+ " does not exist in the shopping cart";
 			
 		}
 		//----------------------------------------------------
