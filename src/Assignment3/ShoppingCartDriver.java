@@ -164,6 +164,7 @@ public class ShoppingCartDriver{
 				if(shoppingCart.get(index).getName().equalsIgnoreCase(name)){
 					shoppingCart.remove(index);
 					index --;
+					exact_match ++;
 				}
 			}
 			if(exact_match == 0){return "Item does not exist in the shopping cart";}
