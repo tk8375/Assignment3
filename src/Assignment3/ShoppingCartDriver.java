@@ -138,7 +138,7 @@ public class ShoppingCartDriver{
 				shoppingCart.add(newGrocery);
 				
 			}
-			else{mssg = "Invalid Category";}
+			else{return "Invalid Category";}
 			mssg = "Inserted " + quantity + " " + name + " for " + price + " each.";
 			return mssg;
 		}
