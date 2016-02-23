@@ -61,7 +61,7 @@ public class Item {
 		System.out.println("Category: " + category);
 		System.out.println("Price: " + price);
 		System.out.println("Quantity: " + quantity);
-		System.out.println("weight: " + weight);
+		System.out.println("weight: " + weight+ " (" + Conversion.Rounding(weight, 0)+ ")");
 	}
 
 }

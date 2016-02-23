@@ -9,8 +9,8 @@ public class Electronics extends Item {
 	public Electronics (String type, String itemName, double itemPrice,  int numPurchased, double pounds, boolean delicate, String state){
 		super(type, itemName, itemPrice, numPurchased, pounds); 
 		fragile = delicate;
-		destination = state;
 		state = state.toUpperCase();
+		destination = state;
 		if(	state.equals("TX")||
 			state.equals("NM")||
 			state.equals("VA")||
@@ -89,7 +89,7 @@ public class Electronics extends Item {
 		System.out.println("Category: " + category);
 		System.out.println("Price: " + price);
 		System.out.println("Quantity: " + quantity);
-		System.out.println("weight: " + weight);
+		System.out.println("weight: " + weight+ " (" +Conversion.Rounding(weight, 0)+ ")");
 		System.out.println("Destination: " + destination);
 		String isFragile = new String();
 		if(fragile){isFragile = "YES";}

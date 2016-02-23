@@ -23,7 +23,7 @@ public class Grocery extends Item {
 		System.out.println("Category: " + category);
 		System.out.println("Price per item: " + price);
 		System.out.println("Quantity: " + quantity);
-		System.out.println("weight per item: " + weight);
+		System.out.println("weight per item: " + weight + " (" + Conversion.Rounding(weight, 0)+ ")");
 		String isPerishable = new String();
 		if(perishable){isPerishable = "YES";}
 		else{isPerishable = "NO";}
