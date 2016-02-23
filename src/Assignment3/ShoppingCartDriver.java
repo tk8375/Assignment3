@@ -81,7 +81,7 @@ public class ShoppingCartDriver{
 				System.out.println("Updating stuff");
 				}
 			else if (operation.equalsIgnoreCase("PRINT")){
-				System.out.println("Printing stuff");
+				System.out.println("Printing Summary");
 				printCart();
 				}
 			else {return "Invalid Operation\n";}
@@ -108,7 +108,7 @@ public class ShoppingCartDriver{
 			if (category.equalsIgnoreCase("CLOTHING")||category.equalsIgnoreCase("CLOTHINGS")){
 				Clothing newCloth = new Clothing(category,name,price,quantity,weight);
 				shoppingCart.add(newCloth);
-				mssg = "Inserted " + quantity + " " + name + " for " + price + " each.";
+				
 			}
 			else if (category.equalsIgnoreCase("ELECTRONICS")||category.equalsIgnoreCase("ELECTRONIC")){
 				boolean isFragile;
@@ -119,12 +119,21 @@ public class ShoppingCartDriver{
 				if(state.equals(null)||state.length()>2){return "Please Specify the name of the State using its abbreviation.";}
 				Electronics newElectronic = new Electronics(category,name,price,quantity,weight,isFragile,state);
 				shoppingCart.add(newElectronic);
-				mssg = "Inserted " + quantity + " " + name + " for " + price + " each.";
+				
 			}
 			else if (category.equalsIgnoreCase("GROCERY")||category.equalsIgnoreCase("GROCERIES")){
+				boolean isPerishable;
+				if(nextword(inputString).equalsIgnoreCase("P")){isPerishable = true;}
+				else if(nextword(inputString).equalsIgnoreCase("NP")){isPerishable = false;}
+				else{return "Please define if the grocery item is perishable or not by inputting 'P' or 'NP'";}
+				String state = nextword(inputString);
+				if(state.equals(null)||state.length()>2){return "Please Specify the name of the State using its abbreviation.";}
+				Grocery newGrocery = new Grocery(category,name,price,quantity,weight,isPerishable);
+				shoppingCart.add(newGrocery);
 				
 			}
 			else{mssg = "Invalid Category";}
+			mssg = "Inserted " + quantity + " " + name + " for " + price + " each.";
 			return mssg;
 		}
 		//----------------------------------------------------
