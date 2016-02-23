@@ -1,5 +1,6 @@
 package Assignment3;
 
+
 public class Conversion {
 	// rounds the value to nearest decimal place
 	public static double Rounding(double value, int decimalPlace){ 		
@@ -60,5 +61,5 @@ public class Conversion {
 		}
 		return -1;
 	}
-	
+
 }	

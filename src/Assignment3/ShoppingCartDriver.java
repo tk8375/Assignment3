@@ -97,7 +97,7 @@ public class ShoppingCartDriver{
 			String category = nextword(inputString);
 			//System.out.println(category);
 			String name = nextword(inputString);
-			if(name.equals(null)){return "Please enter the name of the item";}
+			if(name==null){return "Please enter the name of the item";}
 			double price = Conversion.StringToDouble(nextword(inputString),2);
 			if(price == -1){return "Invalid price";}
 			//System.out.println(price);
@@ -119,7 +119,7 @@ public class ShoppingCartDriver{
 				else if(nextword(inputString).equalsIgnoreCase("NF")){isFragile = false;}
 				else{return "Please define if the electronic is fragile or not by inputting 'F' or 'NF'";}
 				String state = nextword(inputString);
-				if(state.equals(null)||state.length()>2){return "Please Specify the name of the State using its abbreviation.";}
+				if(state==null||state.length()>2){return "Please Specify the name of the State using its abbreviation.";}
 				Electronics newElectronic = new Electronics(category,name,price,quantity,weight,isFragile,state);
 				shoppingCart.add(newElectronic);
 				
@@ -140,7 +140,7 @@ public class ShoppingCartDriver{
 		//----------------------------------------------------
 		//----------------------------------------------------
 		private String searchCart (String name){
-			if(name.equalsIgnoreCase(null)){return "Please input search keyword";}
+			if(name==null){return "Please input search keyword";}
 			int exact_match = 0;
 			int contain_match = 0;
 			Iterator<Item> i = shoppingCart.iterator();
@@ -156,7 +156,7 @@ public class ShoppingCartDriver{
 		//----------------------------------------------------
 		//----------------------------------------------------
 		private String deleteItem (String name){
-			if(name.equalsIgnoreCase(null)){return "Please specify the name of items to be removed.";}
+			if(name==null){return "Please specify the name of items to be removed.";}
 			int exact_match = 0;
 			for(int index = 0; index < shoppingCart.size(); index++){
 				if(shoppingCart.get(index).getName().equalsIgnoreCase(name)){
@@ -173,7 +173,7 @@ public class ShoppingCartDriver{
 		//----------------------------------------------------
 		private String UpdateItem (String inputString){
 			String name = nextword(inputString);
-			if(name.equals(null)){return "Specify the name of item to be updated";}
+			if(name==null){return "Specify the name of item to be updated";}
 			int quantity = Conversion.StringToInt(nextword(inputString));
 			if(quantity == -1){return "Invalid amount to be updated";}
 			for(int index = 0; index < shoppingCart.size(); index++){
@@ -191,6 +191,7 @@ public class ShoppingCartDriver{
 			
 			//must sort the array before printing
 			/*write the sort code/method*/
+			//arrayAlphabeticalSort();
 			Iterator<Item> i = shoppingCart.iterator(); 
 			float total_price = 0;
 			while (i.hasNext()) {
@@ -207,6 +208,7 @@ public class ShoppingCartDriver{
 			System.out.println("Total price of your shopping cart is: " + total_price);
 			return;
 		}
+
 		//----------------------------------------------------
 		//--------------------------------------------------------
 		public String nextword(String input){								
@@ -228,4 +230,12 @@ public class ShoppingCartDriver{
 			//System.out.println(extracted);
 			return extracted;
 		}
+//		private void arrayAlphabeticalSort() {
+//			ArrayList<Item> tempList = new ArrayList<Item>();
+//			smallest
+//			for(int index = 0; index < shoppingCart.size(); index ++){
+//				shoppingCart.get(index).getName().
+//			}
+//			
+//		}
 }
