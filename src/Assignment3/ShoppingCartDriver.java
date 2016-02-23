@@ -203,11 +203,14 @@ public class ShoppingCartDriver{
 			while (i.hasNext()) {
 				Item temp = i.next(); 
 				float cost = temp.calculatePrice(); 
+				float shipping = temp.getShipping_price();
+				float total_cost = cost+shipping;
 				temp.printItemAttributes(); 
 				//This (above) works because of polymorphism: a determination is made at runtime,
 				//based on the inherited class type, as to which method is to be invoked. Eg: If it is an instance
 				// of Grocery, it will invoke the calculatePrice () method defined in Grocery.
-				System.out.println("Total cost of this item is: $" + cost +"\n");
+				System.out.println("The cost of this item is: $" + cost +" + $"+shipping+" shipping.");
+				System.out.println("Total cost of this item is: $" + total_cost +"\n");
 				total_price += cost;
 				
 			}

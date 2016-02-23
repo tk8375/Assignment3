@@ -9,6 +9,7 @@ public class Item {
     protected int quantity;
     protected double weight;
     protected double tax = 10;	//tax is in percents (ex. 10.5% tax -> tax = 10.5)
+    protected float shipping_price;
     /*******************************************************
     *  Create a new item with the given attributes.		 *
     ******************************************************/
@@ -31,21 +32,25 @@ public class Item {
     public String getType(){
     	return category;
     }
+    public float getShipping_price(){
+    	return shipping_price;
+    }
 	float calculatePrice() { 
 		float final_price =(float) (price * quantity); // Insert price calculation here return final_price;
-		float shipping_price = shippingPrice();
+		shipping_price = shippingPrice();
 		final_price = final_price + final_price / (float)tax;
-		final_price += shipping_price;
 		final_price = (float)Conversion.Rounding(final_price, 2);
 		return final_price;
 	}
 	protected float shippingPrice(){
 		float shippingPrice = (float) ((20*(Conversion.Rounding(weight, 0)))*quantity);
+		shippingPrice = (float) Conversion.Rounding(shippingPrice, 2);
 		return shippingPrice;
 	}
 	protected float shippingPrice(boolean premium, double charge){
 		float shippingPrice = (float) ((20*Conversion.Rounding(weight, 0))*quantity);
 		if(premium){shippingPrice = (float) (shippingPrice + shippingPrice/charge);}
+		shippingPrice = (float) Conversion.Rounding(shippingPrice, 2);
 		return shippingPrice;
 	}
 	
@@ -58,4 +63,5 @@ public class Item {
 		System.out.println("Quantity: " + quantity);
 		System.out.println("weight: " + weight);
 	}
+
 }

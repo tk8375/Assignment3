@@ -13,8 +13,7 @@ public class Grocery extends Item {
 	}
 	float calculatePrice() { 
 		float final_price =(float) (price * quantity); // Insert price calculation here return final_price;
-		float shipping_price = shippingPrice(perishable, premium);
-		final_price += shipping_price;
+		shipping_price = shippingPrice(perishable, premium);
 		final_price = (float)Conversion.Rounding(final_price, 2);
 		return final_price;
 	}

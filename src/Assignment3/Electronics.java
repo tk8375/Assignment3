@@ -76,11 +76,10 @@ public class Electronics extends Item {
 //Implement calculate price/print methods as necessary
 	float calculatePrice() { 
 		float final_price =(float) (price * quantity); // Insert price calculation here return final_price;
-		float shipping_price = shippingPrice(fragile, premium);
+		shipping_price = shippingPrice(fragile, premium);
 		if(tax != 0){
 			final_price = final_price + final_price / (float)tax;
 		}
-		final_price += shipping_price;
 		final_price = (float)Conversion.Rounding(final_price,2);
 		return final_price;
 	}
