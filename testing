@@ -1,8 +1,8 @@
 
-insert clothing shirt 20 5 1
+insert clothing shirt 20 3294967296 1
 insert clothing shirt 20 3 1
 insert clothing T-shirt 20 1 2
 search shirt
-delete shirt
+
 insert electronics PS3 300 1 5.2 F NM
 print

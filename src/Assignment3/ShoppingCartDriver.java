@@ -59,13 +59,13 @@ public class ShoppingCartDriver{
 		* Returns: None					                                              *
 		******************************************************************************/
 		public String processCart(String inputString){
-			if(inputString.length()<=0){return "Error: No Input data";}
+			if(inputString.length()<=0){return "";}
 			index = 0;
 			start = 0;
 			inputString += " ";
 			//Parse input, take appropriate actions.
 			String original = new String(inputString);
-			System.out.println(inputString);
+			//System.out.println(inputString);
 			String operation = nextword(original);
 			String message = new String();
 			if (operation.equalsIgnoreCase("INSERT")){

@@ -56,6 +56,8 @@ public class Conversion {
 			letter = inputString.charAt(index);										//takes the letter at the pointer
 			}
 		if(index + 1 == doclength){
+			long UpperLimit = Integer.parseUnsignedInt(inputString);
+			if(UpperLimit > Integer.MAX_VALUE || UpperLimit <0){return -1;}
 			int outputValue = Integer.parseInt(inputString);
 			return outputValue;
 		}
