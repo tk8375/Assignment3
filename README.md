@@ -1,3 +1,3 @@
 "# Assignment3" 
 
-HEY TEXT ME SO WE CAN SET UP A TIME TO MEET!
+So...ok...we done yet?
