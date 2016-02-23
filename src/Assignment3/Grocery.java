@@ -15,7 +15,7 @@ public class Grocery extends Item {
 		float final_price =(float) (price * quantity); // Insert price calculation here return final_price;
 		float shipping_price = shippingPrice(perishable, premium);
 		final_price += shipping_price;
-		final_price = (float)Rounding(final_price, 2);
+		final_price = (float)Conversion.Rounding(final_price, 2);
 		return final_price;
 	}
 	void printItemAttributes () {
@@ -26,8 +26,8 @@ public class Grocery extends Item {
 		System.out.println("Quantity: " + quantity);
 		System.out.println("weight per item: " + weight);
 		String isPerishable = new String();
-		if(perishable){isPerishable = "yes";}
-		else{isPerishable = "no";}
+		if(perishable){isPerishable = "YES";}
+		else{isPerishable = "NO";}
 		System.out.println("Fragile: " + isPerishable);
 	}
 }

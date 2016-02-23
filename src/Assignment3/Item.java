@@ -36,34 +36,20 @@ public class Item {
 		float shipping_price = shippingPrice();
 		final_price += shipping_price;
 		final_price = final_price + final_price / (float)tax;
-		final_price = (float)Rounding(final_price, 2);
+		final_price = (float)Conversion.Rounding(final_price, 2);
 		return final_price;
 	}
 	protected float shippingPrice(){
-		float shippingPrice = (float) ((20*(weight))*quantity);
+		float shippingPrice = (float) ((20*(Conversion.Rounding(weight, 0)))*quantity);
 		return shippingPrice;
 	}
 	protected float shippingPrice(boolean premium, double charge){
-		float shippingPrice = (float) ((20*(weight))*quantity);
+		float shippingPrice = (float) ((20*Conversion.Rounding(weight, 0))*quantity);
 		if(premium){shippingPrice = (float) (shippingPrice + shippingPrice/charge);}
 		return shippingPrice;
 	}
 	
-	// rounds the value to nearest decimal place
-	protected double Rounding(double value, int decimalPlace){ 		int digit = 10; 
-		for(int i = 0; i< decimalPlace; i++){
-			digit *= 10;
-		}
-		double money = ((int)(value * digit));
-		digit /=10;
-		double roundingValue = money/10;
-		money = ((int)(money/10))/digit;
-		int rounding = (int)money/10;
-		roundingValue =(10*(roundingValue - rounding))-5;
-		double round = 1/digit; 
-		if(roundingValue>=0){money+=round;}
-		return money;
-	}
+
 	void printItemAttributes () {
 		//Print all applicable attributes of this class
 		System.out.println("Name: " + name);

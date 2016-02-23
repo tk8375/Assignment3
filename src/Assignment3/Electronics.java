@@ -29,7 +29,7 @@ public class Electronics extends Item {
 		if(tax != 0){
 			final_price = final_price + final_price / (float)tax;
 		}
-		final_price = (float)Rounding(final_price, 2);
+		final_price = (float)Conversion.Rounding(final_price,2);
 		return final_price;
 	}
 	void printItemAttributes () {
@@ -41,8 +41,8 @@ public class Electronics extends Item {
 		System.out.println("weight: " + weight);
 		System.out.println("Destination: " + destination);
 		String isFragile = new String();
-		if(fragile){isFragile = "yes";}
-		else{isFragile = "no";}
+		if(fragile){isFragile = "YES";}
+		else{isFragile = "NO";}
 		System.out.println("Fragile: " + isFragile);
 	}
 }
