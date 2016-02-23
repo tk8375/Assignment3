@@ -190,10 +190,10 @@ public class ShoppingCartDriver{
 		//----------------------------------------------------
 		//----------------------------------------------------
 		private void printCart(){
-			if(shoppingCart.size()<=0){return;}
+			if(shoppingCart.isEmpty()){return;}
 			//must sort the array before printing
 			/*write the sort code/method*/
-			//arrayAlphabeticalSort();
+			arrayAlphabeticalSort();
 			Iterator<Item> i = shoppingCart.iterator(); 
 			float total_price = 0;
 			while (i.hasNext()) {
@@ -203,11 +203,11 @@ public class ShoppingCartDriver{
 				//This (above) works because of polymorphism: a determination is made at runtime,
 				//based on the inherited class type, as to which method is to be invoked. Eg: If it is an instance
 				// of Grocery, it will invoke the calculatePrice () method defined in Grocery.
-				System.out.println("Total cost of this item is: " + cost +"\n");
+				System.out.println("Total cost of this item is: $" + cost +"\n");
 				total_price += cost;
 				
 			}
-			System.out.println("Total price of your shopping cart is: " + total_price);
+			System.out.println("Total price of your shopping cart is: $" + total_price);
 			return;
 		}
 
@@ -233,12 +233,21 @@ public class ShoppingCartDriver{
 			return extracted;
 		}
 		private void arrayAlphabeticalSort() {
-			ArrayList<Item> tempList = new ArrayList<Item>();
-			int index = 0;
-			String smallest = shoppingCart.get(index).getName();
-			for(; index < shoppingCart.size(); index ++){
-				//shoppingCart.get(index).getName().
+			if(shoppingCart.isEmpty()){return;}
+			ArrayList<Item> tempList = new ArrayList<Item>();	
+			while(!shoppingCart.isEmpty()){
+				Item smallest = shoppingCart.get(0);
+				Iterator<Item> j = shoppingCart.iterator();
+				while(j.hasNext()){
+					Item temp = j.next();
+					if(smallest.getName().compareTo(temp.getName())>0){
+						smallest = temp;
+					}
+				}
+				tempList.add(smallest);
+				shoppingCart.remove(smallest);
 			}
-			
+
+			shoppingCart = tempList;
 		}
 }
