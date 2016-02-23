@@ -211,7 +211,7 @@ public class ShoppingCartDriver{
 				// of Grocery, it will invoke the calculatePrice () method defined in Grocery.
 				System.out.println("The cost of this item is: $" + cost +" + $"+shipping+" shipping.");
 				System.out.println("Total cost of this item is: $" + total_cost +"\n");
-				total_price += cost;
+				total_price += total_cost;
 				
 			}
 			System.out.println("Total price of your shopping cart is: $" + total_price);
