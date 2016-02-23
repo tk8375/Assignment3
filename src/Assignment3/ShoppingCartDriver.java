@@ -72,16 +72,19 @@ public class ShoppingCartDriver{
 				message = InsertItem(original);
 				}
 			else if (operation.equalsIgnoreCase("SEARCH")){
-				System.out.println("Searching stuff");
+				//System.out.println("Searching stuff");
+				message = searchCart(nextword(inputString));
 				}
 			else if (operation.equalsIgnoreCase("DELETE")){
-				System.out.println("Deleting stuff");
+				//System.out.println("Deleting stuff");
+				message = deleteItem(nextword(inputString));
 				}
 			else if (operation.equalsIgnoreCase("UPDATE")){
-				System.out.println("Updating stuff");
+				//System.out.println("Updating stuff");
+				message = UpdateItem(inputString);
 				}
 			else if (operation.equalsIgnoreCase("PRINT")){
-				System.out.println("Printing Summary");
+				//System.out.println("Printing Summary");
 				printCart();
 				}
 			else {return "Invalid Operation\n";}
@@ -126,8 +129,6 @@ public class ShoppingCartDriver{
 				if(nextword(inputString).equalsIgnoreCase("P")){isPerishable = true;}
 				else if(nextword(inputString).equalsIgnoreCase("NP")){isPerishable = false;}
 				else{return "Please define if the grocery item is perishable or not by inputting 'P' or 'NP'";}
-				String state = nextword(inputString);
-				if(state.equals(null)||state.length()>2){return "Please Specify the name of the State using its abbreviation.";}
 				Grocery newGrocery = new Grocery(category,name,price,quantity,weight,isPerishable);
 				shoppingCart.add(newGrocery);
 				
@@ -135,6 +136,54 @@ public class ShoppingCartDriver{
 			else{mssg = "Invalid Category";}
 			mssg = "Inserted " + quantity + " " + name + " for " + price + " each.";
 			return mssg;
+		}
+		//----------------------------------------------------
+		//----------------------------------------------------
+		private String searchCart (String name){
+			if(name.equalsIgnoreCase(null)){return "Please input search keyword";}
+			int exact_match = 0;
+			int contain_match = 0;
+			Iterator<Item> i = shoppingCart.iterator();
+			while (i.hasNext()) {
+				Item temp = i.next();
+				if(temp.getName().equalsIgnoreCase(name)){exact_match +=1;}
+				else if(temp.getName().contains(name)){contain_match +=1;}
+			}
+			if(exact_match+contain_match == 0){return "No items found";}
+			String mssg = "Found " + exact_match + " exact matches and " + contain_match + " items that contains the keyword.";
+			return mssg;
+		}
+		//----------------------------------------------------
+		//----------------------------------------------------
+		private String deleteItem (String name){
+			if(name.equalsIgnoreCase(null)){return "Please specify the name of items to be removed.";}
+			int exact_match = 0;
+			for(int index = 0; index < shoppingCart.size(); index++){
+				if(shoppingCart.get(index).getName().equalsIgnoreCase(name)){
+					shoppingCart.remove(index);
+					index --;
+				}
+			}
+			if(exact_match == 0){return "Item does not exist in the shopping cart";}
+			String mssg = "Deleted " + exact_match + " items with name: " + name;
+			return mssg;
+		}
+		
+		//----------------------------------------------------
+		//----------------------------------------------------
+		private String UpdateItem (String inputString){
+			String name = nextword(inputString);
+			if(name.equals(null)){return "Specify the name of item to be updated";}
+			int quantity = Conversion.StringToInt(nextword(inputString));
+			if(quantity == -1){return "Invalid amount to be updated";}
+			for(int index = 0; index < shoppingCart.size(); index++){
+				if(shoppingCart.get(index).getName().equalsIgnoreCase(name)){
+					shoppingCart.get(index).quantity = quantity;
+					return name+" updated by " + quantity;
+				}
+			}
+			return "The item " + name+ "does not exist in the shopping cart";
+			
 		}
 		//----------------------------------------------------
 		//----------------------------------------------------
