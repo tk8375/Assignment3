@@ -95,6 +95,7 @@ public class ShoppingCartDriver{
 		
 		private String InsertItem(String inputString) {
 			String category = nextword(inputString);
+			if(category==null){return "Please enter the category of the item";}
 			//System.out.println(category);
 			String name = nextword(inputString);
 			if(name==null){return "Please enter the name of the item";}
