@@ -56,65 +56,61 @@ public class ShoppingCartDriver{
 		* Method Name: processCart                                                    *
 		* Purpose: Uses String inputString to determine operation and continue 	  	  *
 		* the process accordingly						                              *
-		* Returns: None					                                              *
+		* Returns: String to print out				                                  *
 		******************************************************************************/
 		public String processCart(String inputString){
 			if(inputString.length()<=0){return "";}
 			index = 0;
 			start = 0;
 			inputString += " ";
-			//Parse input, take appropriate actions.
 			String original = new String(inputString);
-			//System.out.println(inputString);
+			System.out.println(inputString);
 			String operation = nextword(original);
 			String message = new String();
 			if (operation.equalsIgnoreCase("INSERT")){
-				//System.out.println("Inserting stuff");
 				message = InsertItem(original);
 				}
 			else if (operation.equalsIgnoreCase("SEARCH")){
-				//System.out.println("Searching stuff");
 				message = searchCart(nextword(inputString));
 				}
 			else if (operation.equalsIgnoreCase("DELETE")){
-				//System.out.println("Deleting stuff");
 				message = deleteItem(nextword(inputString));
 				}
 			else if (operation.equalsIgnoreCase("UPDATE")){
-				//System.out.println("Updating stuff");
 				message = UpdateItem(inputString);
 				}
 			else if (operation.equalsIgnoreCase("PRINT")){
-				//System.out.println("Printing Summary");
 				printCart();
 				}
 			else {return "Invalid Operation\n";}
 			return message+"\n";
 		}
-		//----------------------------------------------------
-		//----------------------------------------------------
+		/******************************************************************************
+		* Method Name: insertItem                                                     *
+		* Purpose: Inserts specified item into arraylist	  	  					  *
+		******************************************************************************/
 		
 		private String InsertItem(String inputString) {
 			String category = nextword(inputString);
 			if(category==null){return "Please enter the category of the item";}
-			//System.out.println(category);
 			String name = nextword(inputString);
 			if(name==null){return "Please enter the name of the item";}
 			double price = Conversion.StringToDouble(nextword(inputString),2);
+			//if price, quantity, or weight are negative, returns an error message.
 			if(price == -1){return "Invalid price";}
-			//System.out.println(price);
 			int quantity = Conversion.StringToInt(nextword(inputString));
 			if(quantity == -1){return "Invalid quantity, please input only integer numbers not followed by a decimal.";}
-			//System.out.println(quantity);
 			double weight = Conversion.StringToDouble(nextword(inputString), -1);
-			//System.out.println(weight);
 			if(weight == -1){return "Invalid weight value";}
 			String mssg = new String();
+			
+			//inserting a clothing item
 			if (category.equalsIgnoreCase("CLOTHING")||category.equalsIgnoreCase("CLOTHINGS")){
 				Clothing newCloth = new Clothing(category,name,price,quantity,weight);
 				shoppingCart.add(newCloth);
 				
 			}
+			//inserting a electronics item
 			else if (category.equalsIgnoreCase("ELECTRONICS")||category.equalsIgnoreCase("ELECTRONIC")){
 				boolean isFragile;
 				String fragile = nextword(inputString);
@@ -128,6 +124,7 @@ public class ShoppingCartDriver{
 				shoppingCart.add(newElectronic);
 				
 			}
+			//inserting a grocery item
 			else if (category.equalsIgnoreCase("GROCERY")||category.equalsIgnoreCase("GROCERIES")){
 				boolean isPerishable;
 				String perishable = nextword(inputString);
@@ -138,12 +135,17 @@ public class ShoppingCartDriver{
 				shoppingCart.add(newGrocery);
 				
 			}
+			//there are no other categories, need to return an error message.
 			else{return "Invalid Category";}
-			mssg = "Inserted " + quantity + " " + name + " for " + price + " each.";
+			//if insertion went successfully, return a confirmation message.
+			mssg = "Inserted " + quantity + " " + name + " for $" + price + " each.";
 			return mssg;
 		}
-		//----------------------------------------------------
-		//----------------------------------------------------
+		/******************************************************************************
+		* Method Name: searchCart                                                     *
+		* Purpose: searches for specified item in the array and returns 			  *
+		* the amount of exact results and similar results.							  *
+		******************************************************************************/
 		private String searchCart (String name){
 			if(name==null){return "Please input search keyword";}
 			int exact_match = 0;
@@ -155,11 +157,13 @@ public class ShoppingCartDriver{
 				else if(temp.getName().contains(name)||temp.getName().equalsIgnoreCase(name)){contain_match +=1;}
 			}
 			if(exact_match+contain_match == 0){return "No items found";}
-			String mssg = "Found " + exact_match + " exact matches and " + contain_match + " items that contains the keyword.";
+			String mssg = "Found " + exact_match + " exact match(es) and " + contain_match + " item(s) that contains the keyword.";
 			return mssg;
 		}
-		//----------------------------------------------------
-		//----------------------------------------------------
+		/******************************************************************************
+		* Method Name: deleteItem                                                     *
+		* Purpose: searches for specified item in the arraylist and removes the entry *
+		******************************************************************************/
 		private String deleteItem (String name){
 			if(name==null){return "Please specify the name of items to be removed.";}
 			int exact_match = 0;
@@ -171,12 +175,15 @@ public class ShoppingCartDriver{
 				}
 			}
 			if(exact_match == 0){return "Item does not exist in the shopping cart";}
-			String mssg = "Deleted " + exact_match + " items with name: " + name;
+			String mssg = "Deleted " + exact_match + " item(s) with name: " + name;
 			return mssg;
 		}
 		
-		//----------------------------------------------------
-		//----------------------------------------------------
+		/******************************************************************************
+		* Method Name: updateItem                                                     *
+		* Purpose: Searches for specified item in arraylist and 					  *
+		* modifies the quantity if found.						  					  *
+		******************************************************************************/
 		private String UpdateItem (String inputString){
 			String name = nextword(inputString);
 			if(name==null){return "Specify the name of item to be updated";}
@@ -185,14 +192,18 @@ public class ShoppingCartDriver{
 			for(int index = 0; index < shoppingCart.size(); index++){
 				if(shoppingCart.get(index).getName().equals(name)){
 					shoppingCart.get(index).quantity = quantity;
-					return name+" updated by " + quantity;
+					return name+" updated; new quantity: " + quantity;
 				}
 			}
 			return "The item " + name+ " does not exist in the shopping cart";
 			
 		}
-		//----------------------------------------------------
-		//----------------------------------------------------
+		/******************************************************************************
+		* Method Name: printCart                                                      *
+		* Purpose: sorts the array alphabetically and prints each element  			  *
+		* and its attributes: name, category, price, quantity, weight, etc.			  *
+		* and prints out the total cost of all items in the cart at the end 		  *		  
+		******************************************************************************/
 		private void printCart(){
 			if(shoppingCart.isEmpty()){return;}
 			//must sort the array before printing
@@ -218,8 +229,11 @@ public class ShoppingCartDriver{
 			return;
 		}
 
-		//----------------------------------------------------
-		//--------------------------------------------------------
+		/******************************************************************************
+		* Method Name: nextword                                                       *
+		* Purpose: itterates through each character in string and separates			  *
+		* words by spaces. Returns the next word in the string.						  *
+		******************************************************************************/
 		public String nextword(String input){								
 			char letter = input.charAt(index);
 			int doclength = input.length();
@@ -244,6 +258,12 @@ public class ShoppingCartDriver{
 			//System.out.println(extracted);
 			return extracted;
 		}
+		/******************************************************************************
+		* Method Name: arrayAlphabeticalSort                                          *
+		* Purpose: Goes through each element in the array and compares with 		  *
+		* other elements in the array to determine alphabetical order.   			  *
+		* entries are reorganized in a new array alphabetically						  *
+		******************************************************************************/
 		private void arrayAlphabeticalSort() {
 			if(shoppingCart.isEmpty()){return;}
 			ArrayList<Item> tempList = new ArrayList<Item>();	

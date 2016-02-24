@@ -16,10 +16,8 @@ public class Electronics extends Item {
 			state.equals("VA")||
 			state.equals("AZ")||
 			state.equals("AK")){tax = 0;}
-		
-		//override calculatePrice() if necessary; Implement print methods as necessary
-		// Only re-implement stuff you cannot get from the superclass (Item)
 	}
+	//checks to see if item is being sent to a state in the US. 
 	public static boolean RealState (String state){
 		if( state.equalsIgnoreCase("AL")||
 			state.equalsIgnoreCase("AK")||
@@ -87,9 +85,9 @@ public class Electronics extends Item {
 		//Print all applicable attributes of this class
 		System.out.println("Name: " + name);
 		System.out.println("Category: " + category);
-		System.out.println("Price: " + price);
+		System.out.println("Price: $" + price);
 		System.out.println("Quantity: " + quantity);
-		System.out.println("weight: " + weight+ " (" +Conversion.Rounding(weight, 0)+ ")");
+		System.out.println("Weight: " + weight+ " (" +Conversion.Rounding(weight, 0)+ ")");
 		System.out.println("Destination: " + destination);
 		String isFragile = new String();
 		if(fragile){isFragile = "YES";}

@@ -1,7 +1,6 @@
-insert clothing shIrt 20 5 1
-insert clothing shirt 20 3 1
-insert Electronics T-shirt 20 1 2 nf nm
+insert grocery cabbage 3 2 1 p
+insert clothing shirt 20 1 1.33 x
+insert Electronics T-shirt 20 1 2.33 nf nm
 search shirt
-delete shirt
 insert electronics PS3 300 1 5.2 nF CB
 print

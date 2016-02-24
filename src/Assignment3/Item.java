@@ -36,18 +36,21 @@ public class Item {
     	return shipping_price;
     }
 	float calculatePrice() { 
-		float final_price =(float) (price * quantity); // Insert price calculation here return final_price;
+		//calculates price by multiplying quantity by price, then adding tax, then shipping costs.
+		float final_price =(float) (price * quantity);
 		shipping_price = shippingPrice();
 		final_price = final_price + final_price / (float)tax;
 		final_price = (float)Conversion.Rounding(final_price, 2);
 		return final_price;
 	}
 	protected float shippingPrice(){
+		//calculates regular shipping price: (20*weight)*quantity
 		float shippingPrice = (float) ((20*(Conversion.Rounding(weight, 0)))*quantity);
 		shippingPrice = (float) Conversion.Rounding(shippingPrice, 2);
 		return shippingPrice;
 	}
 	protected float shippingPrice(boolean premium, double charge){
+		//calculates shipping price: either regular shipping or premium shipping.
 		float shippingPrice = (float) ((20*Conversion.Rounding(weight, 0))*quantity);
 		if(premium){shippingPrice = (float) (shippingPrice + shippingPrice/charge);}
 		shippingPrice = (float) Conversion.Rounding(shippingPrice, 2);
@@ -59,9 +62,9 @@ public class Item {
 		//Print all applicable attributes of this class
 		System.out.println("Name: " + name);
 		System.out.println("Category: " + category);
-		System.out.println("Price: " + price);
+		System.out.println("Price: $" + price);
 		System.out.println("Quantity: " + quantity);
-		System.out.println("weight: " + weight+ " (" + Conversion.Rounding(weight, 0)+ ")");
+		System.out.println("Weight: " + weight+ " (" + Conversion.Rounding(weight, 0)+ ")");
 	}
 
 }
