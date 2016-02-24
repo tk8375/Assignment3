@@ -1,6 +1,5 @@
 insert grocery cabbage 3 2 1 p
-insert clothing shirt 20 1 1.33 x
-insert Electronics T-shirt 20 1 2.33 nf nm
-search shirt
-insert electronics PS3 300 1 5.2 nF CB
+insert clothing Cabbage 20 1 1.33 x
+search cabbage
+delete cabbage
 print

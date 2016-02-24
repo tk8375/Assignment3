@@ -1,3 +1,7 @@
+/*
+ * Assignment3 - EE422C
+ * Alice Lam and Taewhan Ko
+ */
 package Assignment3;
 
 
