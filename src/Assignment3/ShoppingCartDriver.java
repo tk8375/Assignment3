@@ -114,6 +114,7 @@ public class ShoppingCartDriver{
 			else if (category.equalsIgnoreCase("ELECTRONICS")||category.equalsIgnoreCase("ELECTRONIC")){
 				boolean isFragile;
 				String fragile = nextword(inputString);
+				if(fragile == null){return "Please define if the electronic is fragile or not by inputting 'F' or 'NF'";}
 				if(fragile.equalsIgnoreCase("F")){isFragile = true;}
 				else if(fragile.equalsIgnoreCase("NF")){isFragile = false;}
 				else{return "Please define if the electronic is fragile or not by inputting 'F' or 'NF'";}
@@ -128,6 +129,7 @@ public class ShoppingCartDriver{
 			else if (category.equalsIgnoreCase("GROCERY")||category.equalsIgnoreCase("GROCERIES")){
 				boolean isPerishable;
 				String perishable = nextword(inputString);
+				if(perishable == null){return "Please define if the grocery item is perishable or not by inputting 'P' or 'NP'";}
 				if(perishable.equalsIgnoreCase("P")){isPerishable = true;}
 				else if(perishable.equalsIgnoreCase("NP")){isPerishable = false;}
 				else{return "Please define if the grocery item is perishable or not by inputting 'P' or 'NP'";}
