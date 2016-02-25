@@ -99,7 +99,7 @@ public class ShoppingCartDriver{
 			//if price, quantity, or weight are negative, returns an error message.
 			if(price == -1){return "Invalid price";}
 			int quantity = Conversion.StringToInt(nextword(inputString));
-			if(quantity == -1){return "Invalid quantity, please input only positive integer numbers not followed by a decimal.";}
+			if(quantity == -1){return "Invalid quantity";}
 			double weight = Conversion.StringToDouble(nextword(inputString), -1);
 			if(weight == -1){return "Invalid weight value";}
 			String mssg = new String();
@@ -207,7 +207,10 @@ public class ShoppingCartDriver{
 		* and prints out the total cost of all items in the cart at the end 		  *		  
 		******************************************************************************/
 		private void printCart(){
-			if(shoppingCart.isEmpty()){return;}
+			if(shoppingCart.isEmpty()){
+				System.out.println("The cart is empty.");
+				return;
+				}
 			//must sort the array before printing
 			/*write the sort code/method*/
 			arrayAlphabeticalSort();
