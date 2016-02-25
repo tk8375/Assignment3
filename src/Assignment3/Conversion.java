@@ -29,6 +29,7 @@ public class Conversion {
 	//pass in -1 for decimalPlace if the value returned does not need to be rounded
 	//decimalPlace is used for Rounding
 	public static double StringToDouble (String inputString, int decimalPlace){
+		if(inputString == null){return -1;}
 		int index = 0;
 		int decimal = -1;
 		char letter = inputString.charAt(index);
@@ -52,22 +53,23 @@ public class Conversion {
 	//convert string into int value and returns -1 if string is not a number or if overflow occurs.
 	public static int StringToInt (String inputString){
 		try{
-		int index = 0;
-		char letter = inputString.charAt(index);
-		int doclength = inputString.length();
-		if (doclength==0){return -1;}
-		if (doclength ==1 && letter =='.'){return -1;}
-		while (((Character.isDigit(letter)==true))&& index!=doclength-1){		
-			index++;
-			letter = inputString.charAt(index);										//takes the letter at the pointer
+			if(inputString == null){return -1;}
+			int index = 0;
+			char letter = inputString.charAt(index);
+			int doclength = inputString.length();
+			if (doclength==0){return -1;}
+			if (doclength ==1 && letter =='.'){return -1;}
+			while (((Character.isDigit(letter)==true))&& index!=doclength-1){		
+				index++;
+				letter = inputString.charAt(index);										//takes the letter at the pointer
+				}
+			if(index + 1 == doclength){
+				long UpperLimit = Integer.parseUnsignedInt(inputString);
+				if(UpperLimit > Integer.MAX_VALUE || UpperLimit <0){return -1;}
+				int outputValue = Integer.parseInt(inputString);
+				return outputValue;
 			}
-		if(index + 1 == doclength){
-			long UpperLimit = Integer.parseUnsignedInt(inputString);
-			if(UpperLimit > Integer.MAX_VALUE || UpperLimit <0){return -1;}
-			int outputValue = Integer.parseInt(inputString);
-			return outputValue;
-		}
-		return -1;
+			return -1;
 		}
 		catch(NumberFormatException e){
 			return -1;
